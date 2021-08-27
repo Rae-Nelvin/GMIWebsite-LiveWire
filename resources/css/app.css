@@ -1,0 +1,28 @@
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+main {
+    min-width: 100%;
+    min-height: 100vh;
+    background-color: rgba(107, 114, 128, var(--tw-bg-opacity));
+}
+
+aside .px-4{
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
+}
+
+aside .py-2{
+    padding-top: 0.5rem !important;
+    padding-bottom: 0.5rem !important;
+}
+
+aside .mt-2{
+    margin-top: 0.5rem !important;
+}
+
+aside .text-white {
+    --tw-text-opacity: 1 !important;
+    color: rgba(255, 255, 255, var(--tw-text-opacity)) !important;
+}
