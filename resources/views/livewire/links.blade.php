@@ -14,12 +14,12 @@
                 <p class="text-white ml-8">Filter By Gamemodes: </p>
                 <select class="form-control form-control-sm rounded ml-4" wire:model="selectedGamemodes">
                     <option selected value="">All</option>
-                    <option value="TTT">Trouble in Terrorist Town</option>
-                    <option value="Surf">Surf</option>
+                    <option value="TTT">Trouble in Terrorist Town V2</option>
+                    <option value="Surf">Surf V2</option>
                     <option value="Deathrun">Deathrun</option>
                     <option value="Slender">Slender</option>
                     <option value="Sandbox">Sandbox</option>
-                    <option value="PH">Prop Hunt</option>
+                    <option value="PH">Prop Hunt X</option>
                 </select>
             </div>
         </div>
@@ -93,7 +93,7 @@
                             <option value="Deathrun">Deathrun</option>
                             <option value="Slender">Slender</option>
                             <option value="Sandbox">Sandbox</option>
-                            <option value="PH">Prop Hunt</option>
+                            <option value="PH">Prop Hunt X</option>
                         </select>
                     </div>
                 </div>

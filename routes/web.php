@@ -41,5 +41,9 @@ Route::group(['middleware' => [
     Route::get('/links', function() {
         return view('admin.links');
     })->name('links');
+
+    Route::get('/TTTRoles', function() {
+        return view('admin.t-t-t-roles');
+    })->name('TTTRoles');
     
 });

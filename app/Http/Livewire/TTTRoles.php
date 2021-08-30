@@ -9,24 +9,25 @@ use Livewire\WithPagination;
 use Livewire\WithFileUploads;
 use Illuminate\Support\Facades\Auth;
 
-class News extends Component
+class TTTRoles extends Component
 {    
     use WithPagination;
     use WithFileUploads;
 
     public $sortBy = 'updated_at';
-    
+
     public $modalFormVisible;
     public $modalConfirmDeleteVisible;
-    public $title;
+    public $roles;
     public $description;
-    public $link;
+    public $teams;
     public $photos;
-    public $modelId;
-    public $sortDirection = 'desc';
     public $attachment;
     public $iteration;
-
+    public $modelId;
+    public $selectedTypes = null;
+    public $sortDirection = 'desc';
+    
     /**
      * The validation rules.
      *
@@ -35,9 +36,10 @@ class News extends Component
     public function rules()
     {
         return [
-            'title' => 'required',
+            'roles' => 'required',
             'description' => 'required',
-            'link' => 'required',
+            'teams' => 'required',
+            'photos' => 'image|required',
         ];
     }
 
@@ -61,9 +63,9 @@ class News extends Component
     public function loadModel()
     {
         $data = WebContents::find($this->modelId);
-        $this->title = $data->content1;
+        $this->roles = $data->content1;
         $this->description = $data->content2;
-        $this->link = $data->content3;
+        $this->teams = $data->content3;
     }
     
     /**
@@ -76,21 +78,21 @@ class News extends Component
         $this->validate();
 
         $userID = Auth::user();
-        $section = "News";
-        $filepath = $section . '/' . $this->photos->hashName();
-        $this->photos->store('photos/'. $section .'/');
+        $section = 'TTTRoles';
+        $filepath = $section . '/' . $this->teams . '/' . $this->photos->hashName();
+        $this->photos->store('photos/'. $section .'/' . $this->teams . '/');
         WebPhotos::create([
             'section' => $section,
-            'caption' => $this->title,
+            'caption' => $this->roles,
             'file_path' => $filepath,
             'author_id' => $userID->id,
         ]);
         $photoID = WebPhotos::where('file_path','=',$filepath)->first();
         WebContents::create([
             'section' => $section,
-            'content1' => $this->title,
+            'content1' => $this->roles,
             'content2' => $this->description,
-            'content3' => $this->link,
+            'content3' => $this->teams,
             'photo_id' => $photoID->id,
             'author_id' => $userID->id,
         ]);
@@ -98,7 +100,7 @@ class News extends Component
         $this->resetVars();
         $this->modalFormVisible = false;
 
-        return redirect()->to('/News');
+        return redirect()->to('/TTTRoles');
     }
     
     /**
@@ -111,18 +113,18 @@ class News extends Component
         $this->validate();
 
         $userID = Auth::user();
-        $section = "News";
+        $section = "TTTRoles";
         $photoID = WebContents::find($this->modelId);
         WebContents::find($this->modelId)->update([
-            'content1' => $this->title,
+            'content1' => $this->roles,
             'content2' => $this->description,
-            'content3' => $this->link,
+            'content3' => $this->teams,
             'author_id' => $userID->id,
         ]);
-        $filepath = $section . '/' . $this->photos->hashName();
-        $this->photos->store('photos/'. $section . '/');
+        $filepath = $section . '/' . $this->teams . '/' . $this->photos->hashName();
+        $this->photos->store('photos/'. $section . '/' . $this->teams . '/');
         WebPhotos::find($photoID->photo_id)->update([
-            'caption' => $this->title,
+            'caption' => $this->roles,
             'file_path' => $filepath,
             'author_id' => $userID->id,
         ]);
@@ -130,9 +132,9 @@ class News extends Component
         $this->resetVars();
         $this->modalFormVisible = false;
 
-        return redirect()->to('/News');
+        return redirect()->to('/TTTRoles');
     }
-    
+
     /**
      * The delete function
      *
@@ -187,7 +189,7 @@ class News extends Component
         $this->modelId = $id;
         $this->modalConfirmDeleteVisible = true;
     }
-    
+
     /**
      * Function to reset the variables.
      *
@@ -195,9 +197,9 @@ class News extends Component
      */
     public function resetVars()
     {
-        $this->title = null;
+        $this->roles = null;
         $this->description = null;
-        $this->link = null;
+        $this->teams = null;
         $this->photos = null;
         $this->attachment = null;
         $this->iteration++;
@@ -212,20 +214,23 @@ class News extends Component
     {
         return
         WebContents::query()
-        ->where('section','=','News')
+        ->where('section','=','TTTRoles')
+        ->when($this->selectedTypes, function($query){
+            $query->where('content3','=',$this->selectedTypes);
+        })
         ->orderBy($this->sortBy, $this->sortDirection)
         ->with('photos')
         ->paginate(5);
     }
 
     /**
-     * The render function
+     * The render function.
      *
      * @return void
      */
     public function render()
     {
-        return view('livewire.news', [
+        return view('livewire.t-t-t-roles', [
             'data' => $this->read(),
         ]);
     }

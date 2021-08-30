@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire;
 
+use App\Models\WebContents;
 use Livewire\Component;
 use App\Models\WebPhotos;
 use Livewire\WithPagination;
@@ -17,6 +18,7 @@ class Galleries extends Component
     
     public $modalFormVisible;
     public $modalConfirmDeleteVisible;
+    public $modalAddMoreGamemodes;
     public $title;
     public $gamemodes;
     public $types;

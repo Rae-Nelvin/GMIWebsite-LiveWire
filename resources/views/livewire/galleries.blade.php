@@ -14,12 +14,12 @@
                 <p class="text-white ml-8">Filter By Gamemodes: </p>
                 <select class="form-control form-control-sm rounded ml-4" wire:model="selectedGamemodes">
                     <option selected value="">All</option>
-                    <option value="TTT">Trouble in Terrorist Town</option>
-                    <option value="Surf">Surf</option>
+                    <option value="TTT">Trouble in Terrorist Town V2</option>
+                    <option value="Surf">Surf V2</option>
                     <option value="Deathrun">Deathrun</option>
                     <option value="Slender">Slender</option>
                     <option value="Sandbox">Sandbox</option>
-                    <option value="PH">Prop Hunt</option>
+                    <option value="PH">Prop Hunt X</option>
                 </select>
             </div>
         </div>
@@ -88,7 +88,7 @@
                             <option value="Deathrun">Deathrun</option>
                             <option value="Slender">Slender</option>
                             <option value="Sandbox">Sandbox</option>
-                            <option value="PH">Prop Hunt</option>
+                            <option value="PH">Prop Hunt X</option>
                         </select>
                     </div>
                 </div>
@@ -127,7 +127,38 @@
                     </x-jet-danger-button>
                 @endif
 
-                
+            </x-slot>
+        </x-jet-dialog-modal>
+
+        {{-- Add More Form --}}
+    <x-jet-dialog-modal wire:model="modalAddMoreGamemodes">
+            <x-slot name="title">
+                {{ __('New More Gamemodes') }}
+            </x-slot>
+
+            <x-slot name="content">
+                <div class="mt-4">
+                    <x-jet-label for="title" value="{{ __('Title') }}" />
+                    <x-jet-input id="title" class="block mt-1 w-full" type="text" wire:model="title" />
+                    @error('title') <span class="error text-red-500">{{ $message }}</span> @enderror
+                </div>
+            </x-slot>
+
+            <x-slot name="footer">
+                <x-jet-secondary-button wire:click="$toggle('modalAddMoreGamemodes')" wire:loading.attr="disabled">
+                    {{ __('Nevermind') }}
+                </x-jet-secondary-button>
+
+                @if ($modelId)
+                    <x-jet-button class="ml-2" wire:click="update" wire:loading.attr="disabled">
+                        {{ __('Update') }}
+                    </x-jet-danger-button>
+                @else
+                    <x-jet-button class="ml-2" wire:click="addMore" wire:loading.attr="disabled">
+                        {{ __('Create') }}
+                    </x-jet-danger-button>
+                @endif
+
             </x-slot>
         </x-jet-dialog-modal>
         

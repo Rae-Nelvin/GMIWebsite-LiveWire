@@ -18,6 +18,9 @@
         <!-- Font Awesome -->
         <link href="{{ ('fontawesome-free-5.15.4-web/css/all.css') }}" rel="stylesheet"> <!--load all styles -->
 
+        <!-- CK Editor -->
+        <script src="{{ ('ckeditor5/build/ckeditor.js') }}"></script>
+
         @livewireStyles
 
         <!-- Scripts -->
@@ -47,5 +50,6 @@
         @stack('modals')
 
         @livewireScripts
+
     </body>
 </html>
