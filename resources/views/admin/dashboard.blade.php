@@ -21,7 +21,7 @@
         </div>
     </div>
     <!-- Main Content -->
-    <div class="container md:pl-48 mx-auto mt-5">
+    <div class="container mx-auto mt-5">
         @livewire('dashboard')
     </div>
 </x-app-layout>
