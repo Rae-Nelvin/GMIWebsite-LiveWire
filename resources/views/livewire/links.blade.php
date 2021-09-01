@@ -1,18 +1,18 @@
 <div class="p-4">
     <div class="flex justify-between">
-        <div class="ml-8 flex">
+        <div class="2xl:ml-8 flex">
             <h1 class="text-4xl text-white">{{__('Content')}}</h1>
             <div class="flex items-center ml-4">
                 <p class="text-white ml-8">Filter By Types: </p>
-                <select class="form-control form-control-sm rounded ml-4" wire:model="selectedTypes">
+                <select class="form-control form-control-sm rounded ml-4 w-32" wire:model="selectedTypes">
                     <option selected value="">All</option>
                     <option value="ServerIP">Server IP</option>
                     <option value="Content">Content</option>
                 </select>
             </div>
-            <div class="flex items-center ml-8">
+            <div class="flex items-center 2xl:ml-8 md:ml-2">
                 <p class="text-white ml-8">Filter By Gamemodes: </p>
-                <select class="form-control form-control-sm rounded ml-4" wire:model="selectedGamemodes">
+                <select class="form-control form-control-sm rounded ml-4 w-32" wire:model="selectedGamemodes">
                     <option selected value="">All</option>
                     <option value="TTT">Trouble in Terrorist Town V2</option>
                     <option value="Surf">Surf V2</option>

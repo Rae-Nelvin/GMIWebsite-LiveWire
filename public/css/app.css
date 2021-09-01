@@ -1151,6 +1151,10 @@ select {
 	margin-left: auto;
 	margin-right: auto;
 }
+.mx-24 {
+	margin-left: 6rem;
+	margin-right: 6rem;
+}
 .ml-3 {
 	margin-left: 0.75rem;
 }
@@ -1250,6 +1254,9 @@ select {
 .-mt-px {
 	margin-top: -1px;
 }
+.mr-24 {
+	margin-right: 6rem;
+}
 .block {
 	display: block;
 }
@@ -1345,6 +1352,24 @@ select {
 }
 .w-52 {
 	width: 13rem;
+}
+.w-64 {
+	width: 16rem;
+}
+.w-2\/3 {
+	width: 66.666667%;
+}
+.w-11\/12 {
+	width: 91.666667%;
+}
+.w-2\/12 {
+	width: 16.666667%;
+}
+.w-32 {
+	width: 8rem;
+}
+.w-28 {
+	width: 7rem;
 }
 .min-w-0 {
 	min-width: 0px;
@@ -2532,6 +2557,10 @@ aside .text-white {
 		margin-left: 1.5rem;
 	}
 
+	.md\:ml-2 {
+		margin-left: 0.5rem;
+	}
+
 	.md\:block {
 		display: block;
 	}
@@ -2628,6 +2657,18 @@ aside .text-white {
 		margin-top: 3rem;
 	}
 
+	.\32xl\:mt-14 {
+		margin-top: 3.5rem;
+	}
+
+	.\32xl\:ml-8 {
+		margin-left: 2rem;
+	}
+
+	.\32xl\:flex {
+		display: flex;
+	}
+
 	.\32xl\:pb-1 {
 		padding-bottom: 0.25rem;
 	}
@@ -2645,5 +2686,15 @@ aside .text-white {
 	.\32xl\:text-base {
 		font-size: 1rem;
 		line-height: 1.5rem;
+	}
+
+	.\32xl\:text-xl {
+		font-size: 1.25rem;
+		line-height: 1.75rem;
+	}
+
+	.\32xl\:text-2xl {
+		font-size: 1.5rem;
+		line-height: 2rem;
 	}
 }

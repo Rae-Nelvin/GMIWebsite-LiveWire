@@ -1,6 +1,6 @@
 <div class="p-4">
     <div class="flex justify-between">
-        <div class="ml-8 flex">
+        <div class="2xl:ml-8 flex">
             <h1 class="text-4xl text-white">{{__('Content')}}</h1>
             <div class="flex items-center ml-4">
                 <p class="text-white ml-8">Filter By Teams: </p>

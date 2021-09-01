@@ -1,6 +1,6 @@
 <div class="p-4">
     <div class="flex justify-between">
-        <div class="ml-8">
+        <div class="2xl:ml-8">
             <h1 class="text-4xl text-white">{{__('Content')}}</h1>
         </div>
         <div class="text-white bg-yellow-400 rounded items-center py-1 px-6 cursor-pointer hover:bg-yellow-500 hover:scale-105 hover:shadow-lg transition-all">

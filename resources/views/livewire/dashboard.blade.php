@@ -1,6 +1,6 @@
 <div class="container mx-auto">
     <!-- Start Website Contents -->
-    <div class="bg-gray-200 p-4 rounded 2xl:ml-2 mr-64 md:ml-48">
+    <div class="bg-gray-200 p-4 rounded 2xl:ml-2 w-2/3 md:ml-48">
         <!-- Title -->
         <div class="mb-1">
             <h1 class="text-black text-4xl font-normal">Website Contents</h1>
@@ -47,14 +47,14 @@
                 <div class="bg-red-500 rounded-md swiper-slide">
                     <div class="justify-between flex">
                         <div class="text-white">
-                            <h1 class="2xl:text-3xl pt-4 pl-4 md:text-sm md:mb-2">Admin & Staff <br />
+                            <h1 class="2xl:text-xl pt-4 pl-4 md:text-sm md:mb-2">Admin & Staff <br />
                             {{ $admins->count() }}</h1>
                         </div>
                         <div class="mt-4 mr-4 ">
                             <i class="fas fa-users-cog 2xl:text-5xl text-black text-opacity-25 md:text-4xl"></i>
                         </div>
                     </div>
-                    <a href="{{ route('admins') }}"><div class="bg-red-600 hover:bg-red-800 transition-all 2xl:mt-12 md:mt-6 pt-2 2xl:pb-1 text-center rounded-b-md text-white cursor-pointer">
+                    <a href="{{ route('admins') }}"><div class="bg-red-600 hover:bg-red-800 transition-all 2xl:mt-14 md:mt-6 pt-2 2xl:pb-1 text-center rounded-b-md text-white cursor-pointer">
                         <h1 class="md:text-sm 2xl:text-base">More info <i class="fas fa-arrow-circle-right"></i></h1>
                     </div></a>
                 </div>
@@ -79,14 +79,14 @@
                 <div class="bg-purple-500 rounded-md swiper-slide">
                     <div class="justify-between flex">
                         <div class="text-white">
-                            <h1 class="2xl:text-3xl pt-4 pl-4 md:text-l md:mb-2">TTT V2 Roles <br />
+                            <h1 class="2xl:text-xl pt-4 pl-4 md:text-l md:mb-2">TTT V2 Roles <br />
                             {{ $roles->count() }}</h1>
                         </div>
                         <div class="mt-4 mr-4 ">
                             <i class="fas fa-user-tag 2xl:text-5xl text-black text-opacity-25 md:text-4xl"></i>
                         </div>
                     </div>
-                    <a href="{{ route('TTTRoles') }}"><div class="bg-purple-600 hover:bg-purple-800 transition-all 2xl:mt-12 md:mt-4 pt-2 2xl:pb-1 text-center rounded-b-md text-white cursor-pointer">
+                    <a href="{{ route('TTTRoles') }}"><div class="bg-purple-600 hover:bg-purple-800 transition-all 2xl:mt-14 md:mt-4 pt-2 2xl:pb-1 text-center rounded-b-md text-white cursor-pointer">
                         <h1 class="md:text-sm 2xl:text-base">More info <i class="fas fa-arrow-circle-right"></i></h1>
                     </div></a>
                 </div>
