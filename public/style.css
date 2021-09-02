@@ -1,0 +1,565 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat+Alternates&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:&display=swap');
+
+html,body
+{
+    width: 100%;
+    height: 100%;
+    margin: 0px;
+    padding: 0px;
+    overflow-x: hidden;
+    background-color: black;
+}
+
+#intro {
+    background-image: url(assets/images/Background/2.jpg);
+    max-width: 100% !important;
+    min-height: 105vh;
+    position: relative;
+    background-size: cover;
+    font-family: 'Montserrat Alternates', sans-serif;
+    animation: slide 25s infinite;
+}
+
+@keyframes slide {
+    0%{
+        background-image: url(assets/images/Background/2.jpg);
+    }
+    25%{
+        background-image: url(assets/images/Background/3.jpg);
+    }
+    50%{
+        background-image: url(assets/images/Background/4.jpg);
+    }
+    75%{
+        background-image: url(assets/images/Background/5.jpg);
+    }
+}
+
+#navbar-logo{
+    max-width: 50%;
+}
+
+#btn-contact-us{
+    font-size: 20px;
+    padding: 15px 50px 15px 50px;
+    margin-left: 40px;
+}
+
+#logo-banner{
+    margin-top: 70px;
+}
+
+#banner-logo {
+    margin-top: 50px;
+    max-width: 25%;
+    margin-left: -13%;
+    position: absolute;
+    border-style: solid;
+    border-color: white;
+}
+
+#logo-banner h1 {
+    font-weight: 900;
+    font-size: 65px;
+    font-family: 'Monsterrat', sans-serif;
+    background: -webkit-linear-gradient(red, #fff, #fff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.carousel-item {
+    min-height: 100vh;
+    background: #777;
+    color: white;
+    position: relative;
+    margin-top: 20px;
+    background-position: center;
+    background-size: cover;
+    filter: blur(3px);
+    opacity: 0.8;
+}
+
+#container-carousel {
+    margin-top: 15%;
+    margin-left: 30%;
+    position: absolute;
+    box-shadow: 0px 0px 15px 15px #000;
+    max-width: 60%;
+}
+
+#sm-container-img {
+    max-width: 100%;
+    min-height: 100%;
+}
+
+.mini-gallery{
+    padding: 5px 5px 5px 5px;
+    width: 100%;
+    margin: 0px;
+}
+
+#gamemode-title{
+    font-size: 30px;
+    color: white;
+    font-family: sans-serif;
+    margin-top: 13px;
+    font-weight: 600;
+}
+
+#gamemode-logo {
+    margin-right: 20px;
+    max-width: 12%;
+    margin-left: 12px;
+}
+
+.server-content{
+    text-decoration: none;
+    color: white;
+    font-size: 20px;
+    font-weight: 700;
+    margin-left: 6px;
+}
+
+.content {
+    margin-top: -50vh;
+}
+
+a#gallery:hover {
+    cursor: pointer;
+    text-decoration: underline #0056b3;
+}
+
+.title{
+    color: white;
+    font-weight: 900;
+    font-size: 65px;
+    font-family: 'Poppins', sans-serif;
+    text-shadow: 3px 5px #000;
+}
+
+.bg-darker{
+    background-color: rgba(0, 0, 0, 0.692);
+}
+
+#rules {
+    background-image: url(assets/images/GMODSS/2.jpg);
+    background-position: center;
+    background-size: cover;
+    width: 100%;
+    position: relative;
+    min-height: 100vh;
+    margin-top: 20px;
+    font-family: 'Roboto', sans-serif;
+}
+
+#rules-content {
+    padding-top: 10%;
+    margin-left: 3%;
+}
+
+#rules-list {
+    font-size: 20px;
+    margin-top: 40px;
+    color: white;
+}
+
+.text-box {
+    max-width: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    padding: 20px 50px 20px 50px;
+    padding-right: 10px;
+    margin-top: 8%;
+}
+
+.no-padding{
+    padding: 0px !important;
+    margin: 0px !important;
+}
+
+#admin {
+    background-color: #0c0d0f;
+    background-position: center;
+    background-size: cover;
+    width: 100%;
+    position: relative;
+    padding-bottom: 5%;
+    margin-top: 20px;
+    font-family: 'Roboto', sans-serif;
+}
+
+#admin-gallery{
+    overflow: hidden;
+    margin-top: 10%;
+}
+
+.admin-container{
+    max-width: 100%;
+    max-height: 100%;
+    overflow: hidden;
+    margin-right: 10px !important;
+}
+
+#h1-admin{
+    color: #fff;
+    padding-top: 5%;
+    margin-bottom: 3%;
+}
+
+.img-hover-zoom--brightness img {
+    transition: transform 1s, filter 1.5s ease-in-out;
+    transform-origin: center center;
+    filter: brightness(100%);
+}
+  
+  /* The Transformation */
+.img-hover-zoom--brightness:hover img {
+    filter: brightness(30%);
+    transform: scale(1.1) !important;
+}
+
+.centered {
+    visibility: hidden;
+    opacity: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #fff;
+    width: 100%;
+}
+
+.img-hover-zoom--brightness:hover .centered{
+    visibility: visible;
+    opacity: 1;
+    transition: opacity 1.5s ease-in-out;
+}
+
+#row-admingallery{
+    display: flex;
+    height: 100%;
+    margin: 0 15vw;
+    max-width: 80%;
+}
+
+#row-admingallery .admin-container{
+    flex: 1;;
+    height: 100%;
+    transform: skew(-15deg);
+    overflow: hidden;
+}
+
+#row-admingallery .admin-container img {
+    width: 140%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+    object-position: center;
+    transform: skew(15deg);
+    margin: 0 -20%;
+}
+
+.admin-name{
+    font-family: 'Montserrat', sans-serif !important;
+    font-size: 25px;
+}
+
+.carousel-rules-container {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding-bottom: 10px;
+    background: rgba(0, 0, 0, 0.8);
+}
+
+.carousel-rules-container-h1 {
+    font-weight: 900;
+    font-size: 40px;
+    font-family: 'Poppins', sans-serif;
+    color: white;
+    margin-top: 1%;
+    margin-left: 5%;
+    margin-right: 20%;
+}
+
+.carousel-rules-container-p {
+    color: white;
+    font-size: 17px;
+    margin-left: 5%;
+    margin-right: 20%;
+    text-align: justify;
+}
+
+
+#myCarousel2 {
+    max-width: 100%;
+    border-radius: 0px 0px 20px 20px;
+    overflow: hidden;
+    max-height: 62vh;
+}
+
+#myCarousel2 .carousel-item {
+    min-height: 60vh;
+    background: rgba(0, 0, 0, 0.7);
+    color: white;
+    position: relative;
+    margin-top: 20px;
+    background-position: center;
+    background-size: cover;
+    filter: blur(0px);
+    opacity: 1;
+}
+
+#vline{
+    background: #fff;
+    margin-top: 40px;
+    padding-top: 0px;
+    padding-right: 2px;
+    margin-bottom: 25px;
+}
+
+.overlay-image{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    top: 0;
+    background-position: center;
+    background-size: cover;
+    opacity: 0.95;
+}
+
+/* 1600 * 900 */
+@media all and (min-width: 1367px) and (max-width: 1600px){
+
+    #logo-banner{
+        margin-top: 40px;
+    }
+
+    #banner-logo {
+        margin-top: 50px;
+        max-width: 23%;
+        margin-left: -11%;
+        position: absolute;
+        border-style: solid;
+        border-color: white;
+    }
+
+    #container-carousel {
+        margin-top: 13%;
+        margin-left: 30%;
+        position: absolute;
+        box-shadow: 0px 0px 15px 15px #000;
+        max-width: 60%;
+    }
+    
+    #sm-container-img {
+        max-width: 100%;
+        min-height: 100%;
+    }
+    
+    .mini-gallery{
+        padding: 5px 5px 5px 5px;
+        width: 100%;
+        margin: 0px;
+    }
+    
+    #gamemode-title{
+        font-size: 27px;
+        color: white;
+        font-family: sans-serif !important;
+        font-weight: 600;
+        margin-top: 15px;
+    }
+    
+    #gamemode-logo {
+        margin-right: 10px;
+        max-width: 15%;
+        margin-left: 5px;
+    }
+    
+    .server-content{
+        text-decoration: none;
+        color: white;
+        font-size: 20px;
+        font-weight: 700;
+    }
+
+    .carousel-rules-container {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        padding-bottom: 10px;
+        background: rgba(0, 0, 0, 0.8);
+    }
+    
+    .carousel-rules-container-h1 {
+        font-weight: 900;
+        font-size: 30px;
+        font-family: 'Poppins', sans-serif;
+        color: white;
+        margin-top: 1%;
+        margin-left: 5%;
+        margin-right: 20%;
+    }
+    
+    .carousel-rules-container-p {
+        color: white;
+        font-size: 15px;
+        margin-left: 5%;
+        margin-right: 20%;
+        text-align: justify;
+    }
+
+    #rules-content {
+        padding-top: 10%;
+        margin-left: 3%;
+    }
+    
+    #rules-list {
+        font-size: 19px;
+        margin-top: 40px;
+        color: white;
+    }
+    
+    .text-box {
+        max-width: 100%;
+        background: rgba(0, 0, 0, 0.7);
+        padding: 20px 50px 20px 10px;
+        padding-right: 10px;
+        margin-top: 9%;
+    }
+}
+
+/* Laptop Mode */
+@media all and (min-width: 720px) and (max-width: 1366px){
+    #navbar-logo{
+        max-width: 60%;
+        margin-left: 150px;
+    }
+
+    #btn-contact-us{
+        font-size: 20px;
+        padding: 10px 30px 10px 30px;
+        margin-left: 10px;
+    }
+
+    #logo-banner{
+        margin-top: 40px;
+    }
+
+    .banner-image {
+        background-image: url(assets/images/Background/9.jpg);
+        background-size: cover;
+        font-family: 'Montserrat Alternates', sans-serif;
+    }
+
+    .content {
+        margin-top: -40vh;
+    }
+
+    .title{
+        color: white;
+        font-weight: 900;
+        font-size: 40px;
+    }
+
+    #banner-logo {
+        margin-top: 30px;
+        margin-left: -11%;
+        max-width: 22%;
+        position: absolute;
+        border-style: solid;
+        border-color: white;
+    }
+
+    #container-carousel {
+        margin-top: 10%;
+        margin-left: 25%;
+        position: absolute;
+        box-shadow: 0px 0px 15px 15px #000;
+        max-width: 60%;
+    }
+    
+    #sm-container-img {
+        max-width: 100%;
+        min-height: 100%;
+    }
+    
+    .mini-gallery{
+        padding: 5px 5px 5px 5px;
+        width: 100%;
+        margin: 0px;
+    }
+    
+    #gamemode-title{
+        font-size: 21px;
+        color: white;
+        font-family: sans-serif !important;
+        font-weight: 600;
+        margin-top: 15px;
+    }
+    
+    #gamemode-logo {
+        margin-right: 10px;
+        max-width: 15%;
+        margin-left: 2%;
+    }
+    
+    .server-content{
+        text-decoration: none;
+        color: white;
+        font-size: 16px;
+        font-weight: 700;
+    }
+
+    .carousel-rules-container {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        padding-bottom: 10px;
+        background: rgba(0, 0, 0, 0.8);
+    }
+    
+    .carousel-rules-container-h1 {
+        font-weight: 900;
+        font-size: 30px;
+        font-family: 'Poppins', sans-serif;
+        color: white;
+        margin-top: 1%;
+        margin-left: 5%;
+        margin-right: 20%;
+    }
+    
+    .carousel-rules-container-p {
+        color: white;
+        font-size: 12px;
+        margin-left: 5%;
+        margin-right: 20%;
+        text-align: justify;
+    }
+
+    #rules-content {
+        padding-top: 10%;
+        margin-left: 3%;
+    }
+    
+    #rules-list {
+        font-size: 15px;
+        margin-top: 40px;
+        color: white;
+    }
+    
+    .text-box {
+        max-width: 100%;
+        background: rgba(0, 0, 0, 0.7);
+        padding: 20px 50px 20px 10px;
+        padding-right: 10px;
+        margin-top: 7%;
+    }
+}

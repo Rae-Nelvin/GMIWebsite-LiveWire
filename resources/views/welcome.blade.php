@@ -38,18 +38,18 @@
 
     <!-- Start of Showcase -->
 
-    <div id="myCarousel" class="carousel slide" data-ride="carousel" data-pause="false">
+    <div id="myCarousel" class="carousel slide" data-ride="carousel" data-pause="true">
         <div class="carousel-inner">
             @foreach ($image1 as $key => $image1)
-            <div class="carousel-item {{$key == 0 ? 'active' : '' }} element" style="background-image:url({{ asset('storage/photos'.$image1->file_path )}})">
-                <p id="types" style="display: none">{{ $image1->gamemodes }}</p>
+            <div class="carousel-item {{$key == 0 ? 'active' : '' }} element" style="background-image:url({{ asset('storage/photos/'.$image1->file_path )}})">
+                <p id="types" style="display: none">{{ $image1->content2 }}</p>
             </div>
             @endforeach
             @foreach ($images1 as $images1)
-                <p class="picts1" style="display:none">storage/photos{{ $images1['file_path'] }} </p>
+                <p class="picts1" style="display:none">storage/photos/{{ $images1['file_path'] }} </p>
             @endforeach
             @foreach ($link as $link)
-                <p class="ip" style="display: none;">{{ $link['title'] }}{{ $link['desc']}}{{ $link['link'] }} </p>
+                <p class="ip" style="display:none">{{ $link['content1'] }}{{ $link['content2']}}{{ $link['content3'] }} </p>
             @endforeach
             <div class="container" id="container-carousel">
                 <div class="row">
@@ -89,16 +89,16 @@
                 <div class="col-7">
                     <div id="myCarousel2" class="carousel slide" data-ride="carousel">
                         <div class="carousel-inner">
-                            @foreach ($news1 as $key => $news1)
-                            <a href="{{ $news1['link'] }}">
-                                <div class="carousel-item {{$key == 0 ? 'active' : '' }}">
-                                    <div class="overlay-image"  style="background-image:url({{asset('storage/photos'.$news1->photos->file_path)}})"></div>
-                                    <div class="carousel-rules-container">
-                                        <h1 class="carousel-rules-container-h1">{{ $news1['title'] }}</h1>
-                                        <p class="carousel-rules-container-p">{{ $news1['desc'] }}</p>
-                                    </div>
+                            @foreach ($news1 as $key2 => $news1)
+                                <div class="carousel-item {{$key2 == 0 ? 'active' : '' }}">
+                                    <div class="overlay-image"  style="background-image:url({{asset('storage/photos/'.$news1->photos->file_path)}})"></div>
+                                    <a href="{{ $news1['content3'] }}">
+                                        <div class="carousel-rules-container">
+                                            <h1 class="carousel-rules-container-h1">{{ $news1['content1'] }}</h1>
+                                            <p class="carousel-rules-container-p">{!! $news1['content2'] !!}</p>
+                                        </div>
+                                    </a>
                                 </div>
-                            </a>
                             @endforeach
                         </div>
                         <a href="#myCarousel2" class="carousel-control-prev" role="button" data-slide-to="prev" style="margin-left: -5%"><span class="sr-only">Previous</span><span class="carousel-control-prev-icon" aria-hidden="true"></span></a>
@@ -137,10 +137,10 @@
                 <div class="row" id="row-admingallery">
                     @foreach ($admin as $admin)
                         <div class="col-3 no-padding admin-container img-hover-zoom--brightness">
-                            <a href="{{ $admin['social_media'] }}"><img src="{{ asset('storage/photos'.$admin->photos->file_path) }}" alt="Display_pict" class="admin-picts"></a>
+                            <a href="{{ $admin['content3'] }}"><img src="{{ asset('storage/photos/'.$admin->photos->file_path) }}" alt="Display_pict" class="admin-picts"></a>
                             <div class="centered text-center">
-                                <h1 class="admin-name no-padding">{{ $admin['real_name'] }} <br><br>"{{ $admin['steam_name'] }}" </h1><br>
-                                <h3 style="font-family: 'Monsterrat', sans-serif;font-size: 25px;font-weight:600;color: gold">{{ $admin['role'] }}</h3>
+                                <h1 class="admin-name no-padding">{{ $admin['content2'] }} <br><br>"{{ $admin['content1'] }}" </h1><br>
+                                <h3 style="font-family: 'Monsterrat', sans-serif;font-size: 25px;font-weight:600;color: gold">{{ $admin['content4'] }}</h3>
                             </div>
                         </div>
                     @endforeach

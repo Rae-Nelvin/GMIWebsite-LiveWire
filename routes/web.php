@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\MainController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,36 +14,35 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [MainController::class, 'index'])->name('index');
+Route::get('/gallery/{id}',[MainController::class,'gallery'])->name('gallery');
 
 Route::group(['middleware' => [
     'auth:sanctum',
     'verified'
 ]], function() {
 
-    Route::get('/dashboard', function() {
+    Route::get('/admin/dashboard', function() {
         return view('admin.dashboard');
     })->name('dashboard');
 
-    Route::get('/galleries', function() {
+    Route::get('/admin/galleries', function() {
         return view('admin.galleries');
     })->name('galleries');
 
-    Route::get('/news', function() {
+    Route::get('/admin/news', function() {
         return view('admin.news');
     })->name('news');
 
-    Route::get('/admins', function() {
+    Route::get('/admin/admins', function() {
         return view('admin.admins');
     })->name('admins');
 
-    Route::get('/links', function() {
+    Route::get('/admin/links', function() {
         return view('admin.links');
     })->name('links');
 
-    Route::get('/TTTRoles', function() {
+    Route::get('/admin/TTTRoles', function() {
         return view('admin.t-t-t-roles');
     })->name('TTTRoles');
     

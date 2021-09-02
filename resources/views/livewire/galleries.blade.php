@@ -4,7 +4,7 @@
             <h1 class="text-4xl text-white">{{__('Photo')}}</h1>
             <div class="flex items-center ml-4">
                 <p class="text-white ml-8">Filter By Types: </p>
-                <select class="form-control form-control-sm rounded ml-4 w-32" wire:model="selectedTypes">
+                <select class="form-control form-control-sm rounded ml-4 2xl:w-full md:w-32" wire:model="selectedTypes">
                     <option selected value="">All</option>
                     <option value="Background">Background</option>
                     <option value="Screenshoots">Screenshoots</option>
@@ -12,7 +12,7 @@
             </div>
             <div class="flex items-center 2xl:ml-8 ml-2">
                 <p class="text-white ml-8">Filter By Gamemodes: </p>
-                <select class="form-control form-control-sm rounded ml-4 w-32" wire:model="selectedGamemodes">
+                <select class="form-control form-control-sm rounded ml-4 2xl:w-full md:w-32" wire:model="selectedGamemodes">
                     <option selected value="">All</option>
                     <option value="TTT">Trouble in Terrorist Town V2</option>
                     <option value="Surf">Surf V2</option>

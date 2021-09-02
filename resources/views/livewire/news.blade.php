@@ -60,7 +60,7 @@
                 </div>
                 <div class="mt-4">
                     <x-jet-label for="description" value="{{ __('Description') }}" />
-                    <div class="flex mt-2"><p>Previous Roles : <span>{!! $description !!}</span></p></div>
+                    <div class="flex mt-2"><p>Previous Description : <span>{!! $description !!}</span></p></div>
                     <div class="block mt-5 w-full " id="editor" wire:ignore>
                         <textarea id="description" type="text" wire:model="description"></textarea>
                     </div>

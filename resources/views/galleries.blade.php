@@ -16,7 +16,7 @@
   <body>
       <!-- Start of Navbar -->
     @foreach($background as $background)
-    <div id="intro" style="background-image: url({{ asset('storage/photos'.$background->file_path )}})">
+    <div id="intro" style="background-image: url({{ asset('storage/photos/'.$background->file_path )}})">
         <div id="layer">
             <nav class="navbar navbar-fixed-top navbar-expand-lg navbar-dark pt-4" style="margin-left: 7%;">
                 <div class="container">
@@ -50,7 +50,7 @@
                     @foreach ($images as $images)
                     <div class="col-4">
                         <div class="images">
-                            <img src="{{ asset('storage/photos'.$images->file_path )}}" alt="{{ $images['file_path'] }}" />
+                            <img src="{{ asset('storage/photos/'.$images->file_path )}}" alt="{{ $images['file_path'] }}" />
                         </div>
                     </div>
                     @endforeach
