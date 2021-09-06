@@ -2,11 +2,16 @@
 
 namespace App\Providers;
 
+use App\Actions\Fortify\Admin\AttemptToAuthenticate;
+use App\Actions\Fortify\Admin\RedirectIfTwoFactorAuthenticatable;
 use App\Actions\Fortify\CreateNewUser;
 use App\Actions\Fortify\ResetUserPassword;
 use App\Actions\Fortify\UpdateUserPassword;
 use App\Actions\Fortify\UpdateUserProfileInformation;
+use App\Http\Controllers\Admin\Auth\AuthenticatedSessionController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Cache\RateLimiting\Limit;
+use Illuminate\Contracts\Auth\StatefulGuard;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\ServiceProvider;
@@ -21,7 +26,11 @@ class FortifyServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+        $this->app->when([AuthenticatedSessionController::class, AttemptToAuthenticate::class, RedirectIfTwoFactorAuthenticatable::class])
+            ->needs(StatefulGuard::class)
+            ->give(function() {
+                return Auth::guard('admin');
+            });
     }
 
     /**
@@ -31,6 +40,24 @@ class FortifyServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        Fortify::loginView(function() {
+            return view('user.auth.login');
+        });
+        Fortify::registerView(function() {
+            return view('user.auth.register');
+        });
+        Fortify::requestPasswordResetLinkView(function() {
+            return view('user.auth.forgot-password');
+        });
+        Fortify::resetPasswordView(function ($request) {
+            return view('user.auth.reset-password');
+        });
+        Fortify::verifyEmailView(function() {
+            return view('user.auth.verify-email');
+        });
+        Fortify::confirmPasswordView(function() {
+            return view('user.auth.confirm-password');
+        });
         Fortify::createUsersUsing(CreateNewUser::class);
         Fortify::updateUserProfileInformationUsing(UpdateUserProfileInformation::class);
         Fortify::updateUserPasswordsUsing(UpdateUserPassword::class);

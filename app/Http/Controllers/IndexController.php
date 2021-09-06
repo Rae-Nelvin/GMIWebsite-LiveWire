@@ -2,13 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\WebContents;
 use App\Models\WebPhotos;
 use Illuminate\Support\Facades\Hash;
 
 
-class MainController extends Controller
+class IndexController extends Controller
 {
     function index(){
         $image1 = WebPhotos::where('section','=','Galleries')->where('content1','=','Background')->get();
@@ -41,41 +42,5 @@ class MainController extends Controller
         $images = WebPhotos::where('section','=','Galleries')->where("content1","=","Screenshoots")->where("content2","=",$gamemodes)->get();
         return view('galleries',['images' => $images,'background' => $background]);
     }
-
-    function login(){
-        return view('auth.login');
-    }
-
-    /*
-    function check(Request $request){
-        //Validate requests
-        $request->validate([
-            'email' => 'required|email',
-            'password' => 'required|min:5'
-        ]);
-
-        $userInfo = User::where('email','=',$request->email)->first();
-
-        if(!$userInfo){
-            return back()->with('Fail', 'We do not recognize your email address');
-        }
-        else{
-            if(Hash::check($request->password, $userInfo->password)){
-                $request->session()->put('LoggedUser', $userInfo->id);
-                
-                return redirect('admin/dashboard/');
-            }
-            else{
-                return back()->with('Fail', 'Incorrect Password');
-            }
-        }
-    }
-
-    function logout(){
-        if(session()->has('LoggedUser')){
-            session()->pull('LoggedUser');
-            return redirect('/auth/login');
-        }
-    }*/
 
 }

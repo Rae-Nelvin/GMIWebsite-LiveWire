@@ -1,7 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\MainController;
+use App\Http\Controllers\IndexController;
+use App\Http\Controllers\User\MainController;
+use App\Http\Controllers\User\Auth\AuthenticatedSessionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,36 +16,17 @@ use App\Http\Controllers\MainController;
 |
 */
 
-Route::get('/', [MainController::class, 'index'])->name('index');
-Route::get('/gallery/{id}',[MainController::class,'gallery'])->name('gallery');
+Route::get('/', [IndexController::class, 'index'])->name('index');
+Route::get('/gallery/{id}',[IndexController::class,'gallery'])->name('gallery');
 
-Route::group(['middleware' => [
-    'auth:sanctum',
-    'verified'
-]], function() {
+Route::group(['middleware' => 'auth'], function() {
 
-    Route::get('/admin/dashboard', function() {
-        return view('admin.dashboard');
-    })->name('dashboard');
+    Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])->name('logout');
 
-    Route::get('/admin/galleries', function() {
-        return view('admin.galleries');
-    })->name('galleries');
+    Route::group(['middleware' => 'verified'], function() {
 
-    Route::get('/admin/news', function() {
-        return view('admin.news');
-    })->name('news');
-
-    Route::get('/admin/admins', function() {
-        return view('admin.admins');
-    })->name('admins');
-
-    Route::get('/admin/links', function() {
-        return view('admin.links');
-    })->name('links');
-
-    Route::get('/admin/TTTRoles', function() {
-        return view('admin.t-t-t-roles');
-    })->name('TTTRoles');
+        Route::get('/dashboard', [MainController::class, 'index'])->name('dashboard');
     
+    });
+
 });
