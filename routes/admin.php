@@ -19,6 +19,21 @@ Route::group(['as' => 'admin.'], function() {
     Route::group(['middleware' => 'auth:admin'], function() {
 
         Route::get('/dashboard', [MainController::class, 'index'])->name('dashboard');
+        Route::get('/galleries', function() {
+            return view('admin.galleries');
+        })->name('galleries');
+        Route::get('/news', function() {
+            return view('admin.news');
+        })->name('news');
+        Route::get('/admins', function() {
+            return view('admin.admins');
+        })->name('admins');
+        Route::get('/links', function() {
+            return view('admin.links');
+        })->name('links');
+        Route::get('/TTTRoles', function() {
+            return view('admin.t-t-t-roles');
+        })->name('TTTRoles');
         Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])->name('logout');
 
     });

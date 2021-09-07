@@ -8,9 +8,6 @@ use App\Models\WebContents;
 
 class Dashboard extends Component
 {
-
-    
-    
     /**
      * The galleries read function.
      *

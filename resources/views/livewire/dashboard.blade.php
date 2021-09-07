@@ -22,7 +22,7 @@
                             <i class="far fa-images 2xl:text-5xl text-black text-opacity-25 md:text-4xl"></i>
                         </div>
                     </div>
-                    <a href="{{ route('galleries') }}"><div class="bg-green-600 hover:bg-green-800 transition-all 2xl:mt-12 md:mt-4 pt-2 2xl:pb-1 text-center rounded-b-md text-white cursor-pointer">
+                    <a href="{{ route('admin.galleries') }}"><div class="bg-green-600 hover:bg-green-800 transition-all 2xl:mt-12 md:mt-4 pt-2 2xl:pb-1 text-center rounded-b-md text-white cursor-pointer">
                         <h1 class="md:text-sm 2xl:text-base">More info <i class="fas fa-arrow-circle-right"></i></h1>
                     </div></a>
                 </div>
@@ -38,7 +38,7 @@
                             <i class="far fa-newspaper 2xl:text-5xl text-black text-opacity-25 md:text-4xl"></i>
                         </div>
                     </div>
-                    <a href="{{ route('news') }}"><div class="bg-blue-600 hover:bg-blue-800 transition-all 2xl:mt-12 md:mt-4 pt-2 2xl:pb-1 text-center rounded-b-md text-white cursor-pointer">
+                    <a href="{{ route('admin.news') }}"><div class="bg-blue-600 hover:bg-blue-800 transition-all 2xl:mt-12 md:mt-4 pt-2 2xl:pb-1 text-center rounded-b-md text-white cursor-pointer">
                         <h1 class="md:text-sm 2xl:text-base">More info <i class="fas fa-arrow-circle-right"></i></h1>
                     </div></a>
                 </div>
@@ -54,7 +54,7 @@
                             <i class="fas fa-users-cog 2xl:text-5xl text-black text-opacity-25 md:text-4xl"></i>
                         </div>
                     </div>
-                    <a href="{{ route('admins') }}"><div class="bg-red-600 hover:bg-red-800 transition-all 2xl:mt-14 md:mt-6 pt-2 2xl:pb-1 text-center rounded-b-md text-white cursor-pointer">
+                    <a href="{{ route('admin.admins') }}"><div class="bg-red-600 hover:bg-red-800 transition-all 2xl:mt-14 md:mt-6 pt-2 2xl:pb-1 text-center rounded-b-md text-white cursor-pointer">
                         <h1 class="md:text-sm 2xl:text-base">More info <i class="fas fa-arrow-circle-right"></i></h1>
                     </div></a>
                 </div>
@@ -70,7 +70,7 @@
                             <i class="fas fa-link 2xl:text-5xl text-black text-opacity-25 md:text-4xl"></i>
                         </div>
                     </div>
-                    <a href="{{ route('links') }}"><div class="bg-yellow-600 hover:bg-yellow-800 transition-all 2xl:mt-12 md:mt-4 pt-2 2xl:pb-1 text-center rounded-b-md text-white cursor-pointer">
+                    <a href="{{ route('admin.links') }}"><div class="bg-yellow-600 hover:bg-yellow-800 transition-all 2xl:mt-12 md:mt-4 pt-2 2xl:pb-1 text-center rounded-b-md text-white cursor-pointer">
                         <h1 class="md:text-sm 2xl:text-base">More info <i class="fas fa-arrow-circle-right"></i></h1>
                     </div></a>
                 </div>
@@ -86,7 +86,7 @@
                             <i class="fas fa-user-tag 2xl:text-5xl text-black text-opacity-25 md:text-4xl"></i>
                         </div>
                     </div>
-                    <a href="{{ route('TTTRoles') }}"><div class="bg-purple-600 hover:bg-purple-800 transition-all 2xl:mt-14 md:mt-4 pt-2 2xl:pb-1 text-center rounded-b-md text-white cursor-pointer">
+                    <a href="{{ route('admin.TTTRoles') }}"><div class="bg-purple-600 hover:bg-purple-800 transition-all 2xl:mt-14 md:mt-4 pt-2 2xl:pb-1 text-center rounded-b-md text-white cursor-pointer">
                         <h1 class="md:text-sm 2xl:text-base">More info <i class="fas fa-arrow-circle-right"></i></h1>
                     </div></a>
                 </div>

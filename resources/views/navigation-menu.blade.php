@@ -13,7 +13,7 @@
                             </svg>
                         </button>
                     <!-- Logo -->
-                        <a href="{{ route('dashboard') }}">
+                        <a href="{{ route('admin.dashboard') }}">
                             <h1 class="font-bold text-white md:text-4xl"><span class="text-red-500">GARRY'S MOD</span> INDONESIA</h1>
                         </a>
                     </div>
@@ -40,9 +40,9 @@
                             </x-slot>
                             <x-slot name="content">
                                 <!-- Authentication -->
-                                <form method="POST" action="{{ route('logout') }}">
+                                <form method="POST" action="{{ route('admin.logout') }}">
                                     @csrf
-                                    <x-jet-dropdown-link href="{{ route('logout') }}"
+                                    <x-jet-dropdown-link href="{{ route('admin.logout') }}"
                                             onclick="event.preventDefault();
                                                     this.closest('form').submit();">
                                         {{ __('Log Out') }}
@@ -58,7 +58,7 @@
         <!-- Responsive Navigation Menu -->
         <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
             <div class="pt-2 pb-3 space-y-1">
-                <x-jet-responsive-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
+                <x-jet-responsive-nav-link href="{{ route('admin.dashboard') }}" :active="request()->routeIs('dashboard')">
                     {{ __('Dashboard') }}
                 </x-jet-responsive-nav-link>
             </div>
@@ -91,10 +91,10 @@
                     @endif
 
                     <!-- Authentication -->
-                    <form method="POST" action="{{ route('logout') }}">
+                    <form method="POST" action="{{ route('admin.logout') }}">
                         @csrf
 
-                        <x-jet-responsive-nav-link href="{{ route('logout') }}"
+                        <x-jet-responsive-nav-link href="{{ route('admin.logout') }}"
                                     onclick="event.preventDefault();
                                         this.closest('form').submit();">
                             {{ __('Log Out') }}
@@ -118,12 +118,12 @@
                 </button>
                 </div>
                 <nav :class="{'block': open, 'hidden': !open}" class="flex-grow md:block px-4 pb-4 md:pb-0 md:overflow-y-auto">
-                    <x-jet-nav-link class="block px-4 py-2 mt-2 text-sm font-semibold text-white bg-transparent rounded-lg hover:text-gray-900 focus:text-gray-900 hover:bg-gray-600 focus:bg-gray-500 focus:outline-none focus:shadow-outline" href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">Dashboard</x-jet-nav-link><br />
-                    <x-jet-nav-link class="block px-4 py-2 mt-2 text-sm font-semibold text-white bg-transparent rounded-lg hover:text-gray-900 focus:text-gray-900 hover:bg-gray-600 focus:bg-gray-500 focus:outline-none focus:shadow-outline" href="{{ route('galleries') }}" :active="request()->routeIs('galleries')">Galleries</x-jet-nav-link><br />
-                    <x-jet-nav-link class="block px-4 py-2 mt-2 text-sm font-semibold text-white bg-transparent rounded-lg hover:text-gray-900 focus:text-gray-900 hover:bg-gray-600 focus:bg-gray-500 focus:outline-none focus:shadow-outline" href="{{ route('news') }}" :active="request()->routeIs('news')">News</x-jet-nav-link><br />
-                    <x-jet-nav-link class="block px-4 py-2 mt-2 text-sm font-semibold text-white bg-transparent rounded-lg hover:text-gray-900 focus:text-gray-900 hover:bg-gray-600 focus:bg-gray-500 focus:outline-none focus:shadow-outline" href="{{ route('admins') }}" :active="request()->routeIs('admins')">Admin & Staff</x-jet-nav-link><br />
-                    <x-jet-nav-link class="block px-4 py-2 mt-2 text-sm font-semibold text-white bg-transparent rounded-lg hover:text-gray-900 focus:text-gray-900 hover:bg-gray-600 focus:bg-gray-500 focus:outline-none focus:shadow-outline" href="{{ route('links') }}" :active="request()->routeIs('links')">Links & IP</x-jet-nav-link><br />
-                    <x-jet-nav-link class="block px-4 py-2 mt-2 text-sm font-semibold text-white bg-transparent rounded-lg hover:text-gray-900 focus:text-gray-900 hover:bg-gray-600 focus:bg-gray-500 focus:outline-none focus:shadow-outline" href="{{ route('TTTRoles') }}" :active="request()->routeIs('TTTRoles')">TTT V2 Roles</x-jet-nav-link><br />
+                    <x-jet-nav-link class="block px-4 py-2 mt-2 text-sm font-semibold text-white bg-transparent rounded-lg hover:text-gray-900 focus:text-gray-900 hover:bg-gray-600 focus:bg-gray-500 focus:outline-none focus:shadow-outline" href="{{ route('admin.dashboard') }}" :active="request()->routeIs('admin.dashboard')">Dashboard</x-jet-nav-link><br />
+                    <x-jet-nav-link class="block px-4 py-2 mt-2 text-sm font-semibold text-white bg-transparent rounded-lg hover:text-gray-900 focus:text-gray-900 hover:bg-gray-600 focus:bg-gray-500 focus:outline-none focus:shadow-outline" href="{{ route('admin.galleries') }}" :active="request()->routeIs('admin.galleries')">Galleries</x-jet-nav-link><br />
+                    <x-jet-nav-link class="block px-4 py-2 mt-2 text-sm font-semibold text-white bg-transparent rounded-lg hover:text-gray-900 focus:text-gray-900 hover:bg-gray-600 focus:bg-gray-500 focus:outline-none focus:shadow-outline" href="{{ route('admin.news') }}" :active="request()->routeIs('admin.news')">News</x-jet-nav-link><br />
+                    <x-jet-nav-link class="block px-4 py-2 mt-2 text-sm font-semibold text-white bg-transparent rounded-lg hover:text-gray-900 focus:text-gray-900 hover:bg-gray-600 focus:bg-gray-500 focus:outline-none focus:shadow-outline" href="{{ route('admin.admins') }}" :active="request()->routeIs('admin.admins')">Admin & Staff</x-jet-nav-link><br />
+                    <x-jet-nav-link class="block px-4 py-2 mt-2 text-sm font-semibold text-white bg-transparent rounded-lg hover:text-gray-900 focus:text-gray-900 hover:bg-gray-600 focus:bg-gray-500 focus:outline-none focus:shadow-outline" href="{{ route('admin.links') }}" :active="request()->routeIs('admin.links')">Links & IP</x-jet-nav-link><br />
+                    <x-jet-nav-link class="block px-4 py-2 mt-2 text-sm font-semibold text-white bg-transparent rounded-lg hover:text-gray-900 focus:text-gray-900 hover:bg-gray-600 focus:bg-gray-500 focus:outline-none focus:shadow-outline" href="{{ route('admin.TTTRoles') }}" :active="request()->routeIs('admin.TTTRoles')">TTT V2 Roles</x-jet-nav-link><br />
                 </nav>
             </div>
     </aside>

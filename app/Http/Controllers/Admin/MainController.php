@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Hash;
 class MainController extends Controller
 {
     function index(){
-        return view('admin.welcome');
+        return view('admin.dashboard');
     }
 
 }

@@ -1,42 +1,50 @@
-<x-guest-layout>
-    <x-jet-authentication-card>
-        <x-slot name="logo">
-            <x-jet-authentication-card-logo />
-        </x-slot>
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Garry's Mod Indonesia</title>
+    <link rel="shortcut icon" href="{{ asset('assets/images/gmilogo/gmi_logo_old.png') }}" />
+    <link rel="stylesheet" href="{{ asset('assets/css/bootstrap-4.1.3-dist/css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/login-css.css') }}">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.bundle.min.js">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js">
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card">
+                    <form class="box" action="{{ route('admin.login') }}" method="POST">
+                    @if(Session::get('Fail'))
+                        <div class="alert alert-danger">
+                            {{ Session::get('Fail') }}
+                        </div>
+                    @endif
 
-        <x-jet-validation-errors class="mb-4" />
-
-        @if (session('status'))
-            <div class="mb-4 font-medium text-sm text-green-600">
-                {{ session('status') }}
+                    @csrf
+                    <img src="{{ asset('assets/images/gmilogo/gmi_recreate.jpg') }}" alt="Logo Freeletics" class="rounded-circle" id="logo">
+                        <h1>Login</h1>
+                        <p class="text-muted"> Please enter your email and password!</p>
+                        <input type="text" name="email" placeholder="Email">
+                        <span class="text-danger">@error('email'){{ $message}} @enderror</span>
+                        <input type="password" name="password" placeholder="Password">
+                        <span class="text-danger">@error('password'){{ $message}} @enderror</span>
+                        <br><a class="forgot text-muted" href="{{ route('index') }}">Get Back</a>
+                        <input type="submit" value="Submit">
+                        <div class="col-md-12">
+                            <ul class="social-network social-circle">
+                                <li><a href="https://www.instagram.com/leonardowijaya11/" class="icoFacebook" title="Instagram"><i class="fab fa-instagram"></i></a></li>
+                                <li><a href="https://github.com/Rae-Nelvin" class="icoTwitter" title="Github"><i class="fab fa-github"></i></a></li>
+                                <li><a href="mailto: raenelvin29@gmail.com" class="icoGoogle" title="Gmail"><i class="fab fa-google-plus"></i></a></li>
+                            </ul>
+                        </div>
+                    </form>
+                </div>
             </div>
-        @endif
-
-        <form method="POST" action="{{ route('admin.login') }}">
-            @csrf
-
-            <div>
-                <x-jet-label for="email" value="{{ __('Email') }}" />
-                <x-jet-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus />
-            </div>
-
-            <div class="mt-4">
-                <x-jet-label for="password" value="{{ __('Password') }}" />
-                <x-jet-input id="password" class="block mt-1 w-full" type="password" name="password" required autocomplete="current-password" />
-            </div>
-
-            <div class="block mt-4">
-                <label for="remember_me" class="flex items-center">
-                    <x-jet-checkbox id="remember_me" name="remember" />
-                    <span class="ml-2 text-sm text-gray-600">{{ __('Remember me') }}</span>
-                </label>
-            </div>
-
-            <div class="flex items-center justify-end mt-4">
-                <x-jet-button class="ml-4">
-                    {{ __('Log in') }}
-                </x-jet-button>
-            </div>
-        </form>
-    </x-jet-authentication-card>
-</x-guest-layout>
+        </div>
+    </div>
+</body>
+</html>
