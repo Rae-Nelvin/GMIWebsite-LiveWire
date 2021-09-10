@@ -21,7 +21,7 @@
         </div>
         <!-- Main Content -->
         <div class="max-w-full mx-auto sm:px-6 lg:px-8 mt-16 overflow-hidden shadow-xl rounded bg-gray-900">
-                    @livewire('t-t-t-roles')
+                    @livewire('admin.t-t-t-roles')
         </div>
     </div>
 </x-app-layout>

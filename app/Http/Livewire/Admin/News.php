@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire;
+namespace App\Http\Livewire\Admin;
 
 use Livewire\Component;
 use App\Models\WebPhotos;
@@ -9,25 +9,25 @@ use Livewire\WithPagination;
 use Livewire\WithFileUploads;
 use Illuminate\Support\Facades\Auth;
 
-class Admins extends Component
+class TTTRoles extends Component
 {    
     use WithPagination;
     use WithFileUploads;
 
     public $sortBy = 'updated_at';
-    
+
     public $modalFormVisible;
     public $modalConfirmDeleteVisible;
-    public $steamName;
-    public $realName;
-    public $socialMedia;
-    public $role;
+    public $roles;
+    public $description;
+    public $teams;
     public $photos;
-    public $modelId;
-    public $sortDirection = 'desc';
     public $attachment;
     public $iteration;
-
+    public $modelId;
+    public $selectedTypes = null;
+    public $sortDirection = 'desc';
+    
     /**
      * The validation rules.
      *
@@ -36,8 +36,10 @@ class Admins extends Component
     public function rules()
     {
         return [
-            'steamName' => 'required',
-            'role' => 'required',
+            'roles' => 'required',
+            'description' => 'required',
+            'teams' => 'required',
+            'photos' => 'image|required',
         ];
     }
 
@@ -61,10 +63,9 @@ class Admins extends Component
     public function loadModel()
     {
         $data = WebContents::find($this->modelId);
-        $this->steamName = $data->content1;
-        $this->realName = $data->content2;
-        $this->socialMedia = $data->content3;
-        $this->role = $data->content4;
+        $this->roles = $data->content1;
+        $this->description = $data->content2;
+        $this->teams = $data->content3;
     }
     
     /**
@@ -77,29 +78,29 @@ class Admins extends Component
         $this->validate();
 
         $userID = Auth::user();
-        $section = 'Admins';
-
-        $filepath = $section . '/' . $this->photos->hashName();
-        $this->photos->store('photos/'. $section .'/');
+        $section = 'TTTRoles';
+        $filepath = $section . '/' . $this->teams . '/' . $this->photos->hashName();
+        $this->photos->store('photos/'. $section .'/' . $this->teams . '/');
         WebPhotos::create([
             'section' => $section,
-            'caption' => $this->steamName,
+            'caption' => $this->roles,
             'file_path' => $filepath,
             'author_id' => $userID->id,
         ]);
         $photoID = WebPhotos::where('file_path','=',$filepath)->first();
         WebContents::create([
             'section' => $section,
-            'content1' => $this->steamName,
-            'content2' => $this->realName,
-            'content3' => $this->socialMedia,
-            'content4' => $this->role,
+            'content1' => $this->roles,
+            'content2' => $this->description,
+            'content3' => $this->teams,
             'photo_id' => $photoID->id,
             'author_id' => $userID->id,
         ]);
 
         $this->resetVars();
         $this->modalFormVisible = false;
+
+        return redirect()->to('/TTTRoles');
     }
     
     /**
@@ -112,28 +113,28 @@ class Admins extends Component
         $this->validate();
 
         $userID = Auth::user();
-        $section = 'Admins';
-
+        $section = "TTTRoles";
+        $photoID = WebContents::find($this->modelId);
         WebContents::find($this->modelId)->update([
-            'content1' => $this->steamName,
-            'content2' => $this->realName,
-            'content3' => $this->socialMedia,
-            'content4' => $this->role,
+            'content1' => $this->roles,
+            'content2' => $this->description,
+            'content3' => $this->teams,
             'author_id' => $userID->id,
         ]);
-        $filepath = $section . '/' . $this->photos->hashName();
-        $this->photos->store('photos/'. $section .'/');
-        $photoID = WebContents::find($this->modelId);
+        $filepath = $section . '/' . $this->teams . '/' . $this->photos->hashName();
+        $this->photos->store('photos/'. $section . '/' . $this->teams . '/');
         WebPhotos::find($photoID->photo_id)->update([
-            'caption' => $this->steamName,
+            'caption' => $this->roles,
             'file_path' => $filepath,
             'author_id' => $userID->id,
         ]);
 
         $this->resetVars();
         $this->modalFormVisible = false;
+
+        return redirect()->to('/TTTRoles');
     }
-    
+
     /**
      * The delete function
      *
@@ -144,8 +145,8 @@ class Admins extends Component
         $photoID = WebContents::find($this->modelId);
         WebContents::destroy($this->modelId);
         WebPhotos::destroy($photoID->photo_id);
-        $this->resetPage();
         $this->modalConfirmDeleteVisible = false;
+        $this->resetPage();
     }
 
     /**
@@ -176,7 +177,7 @@ class Admins extends Component
         $this->modalFormVisible = true;
         $this->loadModel();
     }
-
+    
     /**
      * Shows the delete confirmation modal.
      *
@@ -196,15 +197,14 @@ class Admins extends Component
      */
     public function resetVars()
     {
-        $this->steamName = null;
-        $this->realName = null;
-        $this->socialMedia = null;
-        $this->role = null;
+        $this->roles = null;
+        $this->description = null;
+        $this->teams = null;
         $this->photos = null;
         $this->attachment = null;
         $this->iteration++;
     }
-
+    
     /**
      * The read function.
      *
@@ -214,7 +214,10 @@ class Admins extends Component
     {
         return
         WebContents::query()
-        ->where('section','=','Admins')
+        ->where('section','=','TTTRoles')
+        ->when($this->selectedTypes, function($query){
+            $query->where('content3','=',$this->selectedTypes);
+        })
         ->orderBy($this->sortBy, $this->sortDirection)
         ->with('photos')
         ->paginate(5);
@@ -227,7 +230,7 @@ class Admins extends Component
      */
     public function render()
     {
-        return view('livewire.admins', [
+        return view('livewire.admin.t-t-t-roles', [
             'data' => $this->read(),
         ]);
     }

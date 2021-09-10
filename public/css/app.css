@@ -1241,6 +1241,12 @@ select {
 .ml-8 {
 	margin-left: 2rem;
 }
+.mr-auto {
+	margin-right: auto;
+}
+.ml-auto {
+	margin-left: auto;
+}
 .block {
 	display: block;
 }

@@ -1,8 +1,7 @@
 <?php
 
-namespace App\Http\Livewire;
+namespace App\Http\Livewire\Admin;
 
-use App\Models\WebContents;
 use Livewire\Component;
 use App\Models\WebPhotos;
 use Livewire\WithPagination;
@@ -207,7 +206,7 @@ class Galleries extends Component
      */
     public function render()
     {
-        return view('livewire.galleries', [
+        return view('livewire.admin.galleries', [
             'data' => $this->read(),
         ]);
     }

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire;
+namespace App\Http\Livewire\Admin;
 
 use Livewire\Component;
 use App\Models\WebPhotos;
@@ -65,7 +65,7 @@ class Dashboard extends Component
      */
     public function render()
     {
-        return view('livewire.dashboard', [
+        return view('livewire.admin.dashboard', [
             'galleries' => $this->galleries(),
             'news' => $this->news(),
             'admins' => $this->admins(),

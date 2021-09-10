@@ -1,15 +1,14 @@
 <?php
 
-namespace App\Http\Livewire;
+namespace App\Http\Livewire\Admin;
 
 use Livewire\Component;
-use App\Models\WebPhotos;
 use App\Models\WebContents;
 use Livewire\WithPagination;
 use Livewire\WithFileUploads;
 use Illuminate\Support\Facades\Auth;
 
-class News extends Component
+class Links extends Component
 {    
     use WithPagination;
     use WithFileUploads;
@@ -18,11 +17,12 @@ class News extends Component
     
     public $modalFormVisible;
     public $modalConfirmDeleteVisible;
-    public $title;
-    public $description;
+    public $types;
+    public $gamemodes;
     public $link;
-    public $photos;
     public $modelId;
+    public $selectedTypes = null;
+    public $selectedGamemodes = null;
     public $sortDirection = 'desc';
     public $attachment;
     public $iteration;
@@ -35,8 +35,8 @@ class News extends Component
     public function rules()
     {
         return [
-            'title' => 'required',
-            'description' => 'required',
+            'types' => 'required',
+            'gamemodes' => 'required',
             'link' => 'required',
         ];
     }
@@ -61,44 +61,54 @@ class News extends Component
     public function loadModel()
     {
         $data = WebContents::find($this->modelId);
-        $this->title = $data->content1;
-        $this->description = $data->content2;
+        $this->types = $data->content1;
+        $this->gamemodes = $data->content2;
         $this->link = $data->content3;
     }
     
     /**
-     * The create function.
+     * The check function.
+     *
+     * @return void
+     */
+    public function check()
+    {
+        $check = WebContents::query()
+        ->where('section','=','Links')
+        ->where('content1','=',$this->types)
+        ->where('content2','=',$this->gamemodes)
+        ->first();
+        if($check == NULL)
+        {
+            $this->create();
+        }else{
+            $this->modelId = $check->id;
+            $this->update();
+        }
+    }
+    
+    /**
+     * The create function
      *
      * @return void
      */
     public function create()
     {
         $this->validate();
-
+        
         $userID = Auth::user();
-        $section = "News";
-        $filepath = $section . '/' . $this->photos->hashName();
-        $this->photos->store('photos/'. $section .'/');
-        WebPhotos::create([
-            'section' => $section,
-            'caption' => $this->title,
-            'file_path' => $filepath,
-            'author_id' => $userID->id,
-        ]);
-        $photoID = WebPhotos::where('file_path','=',$filepath)->first();
+        $section = 'Links';
+
         WebContents::create([
             'section' => $section,
-            'content1' => $this->title,
-            'content2' => $this->description,
+            'content1' => $this->types,
+            'content2' => $this->gamemodes,
             'content3' => $this->link,
-            'photo_id' => $photoID->id,
             'author_id' => $userID->id,
         ]);
 
         $this->resetVars();
         $this->modalFormVisible = false;
-
-        return redirect()->to('/News');
     }
     
     /**
@@ -111,38 +121,24 @@ class News extends Component
         $this->validate();
 
         $userID = Auth::user();
-        $section = "News";
-        $photoID = WebContents::find($this->modelId);
+
         WebContents::find($this->modelId)->update([
-            'content1' => $this->title,
-            'content2' => $this->description,
             'content3' => $this->link,
-            'author_id' => $userID->id,
-        ]);
-        $filepath = $section . '/' . $this->photos->hashName();
-        $this->photos->store('photos/'. $section . '/');
-        WebPhotos::find($photoID->photo_id)->update([
-            'caption' => $this->title,
-            'file_path' => $filepath,
             'author_id' => $userID->id,
         ]);
 
         $this->resetVars();
         $this->modalFormVisible = false;
-
-        return redirect()->to('/News');
     }
     
     /**
-     * The delete function
+     * The delete function.
      *
      * @return void
      */
     public function delete()
     {
-        $photoID = WebContents::find($this->modelId);
-        WebContents::destroy($this->modelId);
-        WebPhotos::destroy($photoID->photo_id);
+        WebContents::destroy(($this->modelId));
         $this->modalConfirmDeleteVisible = false;
         $this->resetPage();
     }
@@ -156,7 +152,7 @@ class News extends Component
     public function createShowModal()
     {
         $this->resetValidation();
-        $this->reset();
+        $this->resetVars();
         $this->modalFormVisible = true;
     }
     
@@ -187,7 +183,7 @@ class News extends Component
         $this->modelId = $id;
         $this->modalConfirmDeleteVisible = true;
     }
-    
+
     /**
      * Function to reset the variables.
      *
@@ -195,14 +191,11 @@ class News extends Component
      */
     public function resetVars()
     {
-        $this->title = null;
-        $this->description = null;
+        $this->types = null;
+        $this->gamemodes = null;
         $this->link = null;
-        $this->photos = null;
-        $this->attachment = null;
-        $this->iteration++;
     }
-    
+
     /**
      * The read function.
      *
@@ -212,20 +205,25 @@ class News extends Component
     {
         return
         WebContents::query()
-        ->where('section','=','News')
+        ->where('section','=','Links')
+        ->when($this->selectedTypes, function($query){
+            $query->where('content1','=',$this->selectedTypes);
+        })
+        ->when($this->selectedGamemodes, function($query){
+            $query->where('content2','=',$this->selectedGamemodes);
+        })
         ->orderBy($this->sortBy, $this->sortDirection)
-        ->with('photos')
         ->paginate(5);
     }
 
     /**
-     * The render function
+     * The render function.
      *
      * @return void
      */
     public function render()
     {
-        return view('livewire.news', [
+        return view('livewire.admin.links', [
             'data' => $this->read(),
         ]);
     }

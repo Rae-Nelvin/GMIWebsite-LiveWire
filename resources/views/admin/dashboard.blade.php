@@ -22,7 +22,7 @@
     </div>
     <!-- Main Content -->
     <div class="container mx-auto mt-5">
-        @livewire('dashboard')
+        @livewire('admin.dashboard')
     </div>
 </x-app-layout>
 </div>

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire;
+namespace App\Http\Livewire\Admin;
 
 use Livewire\Component;
 use App\Models\WebPhotos;
@@ -9,25 +9,25 @@ use Livewire\WithPagination;
 use Livewire\WithFileUploads;
 use Illuminate\Support\Facades\Auth;
 
-class TTTRoles extends Component
+class Admins extends Component
 {    
     use WithPagination;
     use WithFileUploads;
 
     public $sortBy = 'updated_at';
-
+    
     public $modalFormVisible;
     public $modalConfirmDeleteVisible;
-    public $roles;
-    public $description;
-    public $teams;
+    public $steamName;
+    public $realName;
+    public $socialMedia;
+    public $role;
     public $photos;
+    public $modelId;
+    public $sortDirection = 'desc';
     public $attachment;
     public $iteration;
-    public $modelId;
-    public $selectedTypes = null;
-    public $sortDirection = 'desc';
-    
+
     /**
      * The validation rules.
      *
@@ -36,10 +36,8 @@ class TTTRoles extends Component
     public function rules()
     {
         return [
-            'roles' => 'required',
-            'description' => 'required',
-            'teams' => 'required',
-            'photos' => 'image|required',
+            'steamName' => 'required',
+            'role' => 'required',
         ];
     }
 
@@ -63,9 +61,10 @@ class TTTRoles extends Component
     public function loadModel()
     {
         $data = WebContents::find($this->modelId);
-        $this->roles = $data->content1;
-        $this->description = $data->content2;
-        $this->teams = $data->content3;
+        $this->steamName = $data->content1;
+        $this->realName = $data->content2;
+        $this->socialMedia = $data->content3;
+        $this->role = $data->content4;
     }
     
     /**
@@ -78,29 +77,29 @@ class TTTRoles extends Component
         $this->validate();
 
         $userID = Auth::user();
-        $section = 'TTTRoles';
-        $filepath = $section . '/' . $this->teams . '/' . $this->photos->hashName();
-        $this->photos->store('photos/'. $section .'/' . $this->teams . '/');
+        $section = 'Admins';
+
+        $filepath = $section . '/' . $this->photos->hashName();
+        $this->photos->store('photos/'. $section .'/');
         WebPhotos::create([
             'section' => $section,
-            'caption' => $this->roles,
+            'caption' => $this->steamName,
             'file_path' => $filepath,
             'author_id' => $userID->id,
         ]);
         $photoID = WebPhotos::where('file_path','=',$filepath)->first();
         WebContents::create([
             'section' => $section,
-            'content1' => $this->roles,
-            'content2' => $this->description,
-            'content3' => $this->teams,
+            'content1' => $this->steamName,
+            'content2' => $this->realName,
+            'content3' => $this->socialMedia,
+            'content4' => $this->role,
             'photo_id' => $photoID->id,
             'author_id' => $userID->id,
         ]);
 
         $this->resetVars();
         $this->modalFormVisible = false;
-
-        return redirect()->to('/TTTRoles');
     }
     
     /**
@@ -113,28 +112,28 @@ class TTTRoles extends Component
         $this->validate();
 
         $userID = Auth::user();
-        $section = "TTTRoles";
-        $photoID = WebContents::find($this->modelId);
+        $section = 'Admins';
+
         WebContents::find($this->modelId)->update([
-            'content1' => $this->roles,
-            'content2' => $this->description,
-            'content3' => $this->teams,
+            'content1' => $this->steamName,
+            'content2' => $this->realName,
+            'content3' => $this->socialMedia,
+            'content4' => $this->role,
             'author_id' => $userID->id,
         ]);
-        $filepath = $section . '/' . $this->teams . '/' . $this->photos->hashName();
-        $this->photos->store('photos/'. $section . '/' . $this->teams . '/');
+        $filepath = $section . '/' . $this->photos->hashName();
+        $this->photos->store('photos/'. $section .'/');
+        $photoID = WebContents::find($this->modelId);
         WebPhotos::find($photoID->photo_id)->update([
-            'caption' => $this->roles,
+            'caption' => $this->steamName,
             'file_path' => $filepath,
             'author_id' => $userID->id,
         ]);
 
         $this->resetVars();
         $this->modalFormVisible = false;
-
-        return redirect()->to('/TTTRoles');
     }
-
+    
     /**
      * The delete function
      *
@@ -145,8 +144,8 @@ class TTTRoles extends Component
         $photoID = WebContents::find($this->modelId);
         WebContents::destroy($this->modelId);
         WebPhotos::destroy($photoID->photo_id);
-        $this->modalConfirmDeleteVisible = false;
         $this->resetPage();
+        $this->modalConfirmDeleteVisible = false;
     }
 
     /**
@@ -177,7 +176,7 @@ class TTTRoles extends Component
         $this->modalFormVisible = true;
         $this->loadModel();
     }
-    
+
     /**
      * Shows the delete confirmation modal.
      *
@@ -197,14 +196,15 @@ class TTTRoles extends Component
      */
     public function resetVars()
     {
-        $this->roles = null;
-        $this->description = null;
-        $this->teams = null;
+        $this->steamName = null;
+        $this->realName = null;
+        $this->socialMedia = null;
+        $this->role = null;
         $this->photos = null;
         $this->attachment = null;
         $this->iteration++;
     }
-    
+
     /**
      * The read function.
      *
@@ -214,10 +214,7 @@ class TTTRoles extends Component
     {
         return
         WebContents::query()
-        ->where('section','=','TTTRoles')
-        ->when($this->selectedTypes, function($query){
-            $query->where('content3','=',$this->selectedTypes);
-        })
+        ->where('section','=','Admins')
         ->orderBy($this->sortBy, $this->sortDirection)
         ->with('photos')
         ->paginate(5);
@@ -230,7 +227,7 @@ class TTTRoles extends Component
      */
     public function render()
     {
-        return view('livewire.t-t-t-roles', [
+        return view('livewire.admin.admins', [
             'data' => $this->read(),
         ]);
     }
