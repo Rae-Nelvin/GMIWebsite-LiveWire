@@ -1,5 +1,4 @@
-</aside>
-<x-guest-layout layout:layouts.guest>
+<x-guest-layout>
     <!-- Main Contents Go Here -->
     <div class="bg-gray-500 md:pl-40 m-5 p-3"> 
         <!-- Title -->
